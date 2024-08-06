@@ -1,9 +1,15 @@
+% this code recognizes and tracks the movement of bacteria frame-by-frame through a video.
+% also generates plots and video if desired.
+
 function trackem(stackin)
 %tracking for single video
 %takes about 80 seconds
 %saves result as matlab data file and displays histograms
 %can look at video if you want to, but that would take 2 hrs
+
 tic
+%to keep track of the time it takes
+
 maxtrackspots=4; %filter can be adjusted, or adjust cost
 
 %localize
