@@ -1,5 +1,5 @@
-%this code returns a processed image of the background acquired under the same conditions as the test image in order to subtract background noise from the test
-%called by pross2
+% this code returns a processed image of the background acquired under the same conditions as the test image in order to subtract background noise from the test.
+% called by pross2.
 
 function back=back(img)
 %img is type double
