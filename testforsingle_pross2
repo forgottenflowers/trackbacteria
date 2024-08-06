@@ -1,5 +1,7 @@
-%this code returns the processed binary image of a single frame from the video
-%still the oldest pross file, but creates separate plots for better view
+%this code returns the processed binary image of a single frame from the video.
+%plots are created for manual verification of image processing parameters if desired.
+
+%still the oldest pross file, but creates separate plots for better view.
 
 function pross2(pic)
 %larger plots
