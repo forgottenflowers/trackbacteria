@@ -1,0 +1,75 @@
+function back=back(img)
+%img is type double
+
+x=(1:length(img(:,1)))';
+y=(1:length(img))';
+lenx=length(x);
+leny=length(y);
+X=repmat(x,1,leny);
+Y=(repmat(y,1,lenx))';
+
+n00=lenx*leny;
+n10=sum(x)*leny;
+n01=sum(y)*lenx;
+n20=sum(x.^2)*leny;
+n02=sum(y.^2)*lenx;
+n30=sum(x.^3)*leny;
+n03=sum(y.^3)*lenx;
+n40=sum(x.^4)*leny;
+n04=sum(y.^4)*lenx;
+n50=sum(x.^5)*leny;
+n05=sum(y.^5)*lenx;
+n60=sum(x.^6)*leny;
+n06=sum(y.^6)*lenx;
+
+n11=sum(X(:).*Y(:));
+
+n21=sum((X(:).^2).*Y(:));
+n12=sum(X(:).*(Y(:).^2));
+
+n31=sum((X(:).^3).*Y(:));
+n22=sum((X(:).^2).*(Y(:).^2));
+n13=sum(X(:).*(Y(:).^3));
+
+n41=sum((X(:).^4).*Y(:));
+n32=sum((X(:).^3).*(Y(:).^2));
+n23=sum((X(:).^2).*(Y(:).^3));
+n14=sum(X(:).*(Y(:).^4));
+
+n51=sum((X(:).^5).*Y(:));
+n42=sum((X(:).^4).*(Y(:).^2));
+n33=sum((X(:).^3).*(Y(:).^3));
+n24=sum((X(:).^2).*(Y(:).^4));
+n15=sum(X(:).*(Y(:).^5));
+
+A=[n60 n33 n51 n42 n50 n32 n41 n40 n31 n30; 
+   n33 n06 n24 n15 n23 n05 n14 n13 n04 n03;
+   n51 n24 n42 n33 n41 n23 n32 n31 n22 n21;
+   n42 n15 n33 n24 n32 n14 n23 n22 n13 n12;
+   n50 n23 n41 n32 n40 n22 n31 n30 n21 n20;
+   n32 n05 n23 n14 n22 n04 n13 n12 n03 n02;
+   n41 n14 n32 n23 n31 n13 n22 n21 n12 n11;
+   n40 n13 n31 n22 n30 n12 n21 n20 n11 n10;
+   n31 n04 n22 n13 n21 n03 n12 n11 n02 n01;
+   n30 n03 n21 n12 n20 n02 n11 n10 n01 n00];
+
+B=[sum(X(:).*X(:).*X(:).*img(:));
+    sum(Y(:).*Y(:).*Y(:).*img(:));
+    sum(X(:).*X(:).*Y(:).*img(:));
+    sum(Y(:).*Y(:).*X(:).*img(:));
+    sum(X(:).*X(:).*img(:));
+    sum(Y(:).*Y(:).*img(:));
+    sum(X(:).*Y(:).*img(:));
+    sum(X(:).*img(:));
+    sum(Y(:).*img(:));
+    sum(img(:))];
+
+coeff=A\B;
+
+back=coeff(1)*(X.^3)+coeff(2)*(Y.^3)+coeff(3)*(X.^2).*Y+coeff(4)*(Y.^2).*X+coeff(5)*(X.^2)+coeff(6)*(Y.^2)+coeff(7)*X.*Y+coeff(8)*X+coeff(9)*Y+coeff(10);
+
+end
+
+
+
+
